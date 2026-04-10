@@ -718,7 +718,7 @@ public class TimelineWindow {
         boolean pressedIn = ImGui.isKeyPressed(GLFW.GLFW_KEY_I, false);
         boolean pressedOut = ImGui.isKeyPressed(GLFW.GLFW_KEY_O, false);
 
-        boolean ctrlPressed = InputQuirks.REPLACE_CTRL_KEY_WITH_CMD_KEY ? ImGui.isKeyDown(GLFW.GLFW_KEY_LEFT_SUPER) : ImGui.isKeyDown(GLFW.GLFW_KEY_LEFT_CONTROL);
+       boolean ctrlPressed = ImGui.isKeyDown(GLFW.GLFW_KEY_LEFT_CONTROL) || ImGui.isKeyDown(GLFW.GLFW_KEY_LEFT_SUPER);
         boolean pressedCopy = ctrlPressed && ImGui.isKeyPressed(GLFW.GLFW_KEY_C, false);
         boolean pressedPaste = ctrlPressed && ImGui.isKeyPressed(GLFW.GLFW_KEY_V, false);
 
