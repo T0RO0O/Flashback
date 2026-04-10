@@ -131,9 +131,14 @@ public enum VideoCodec implements ComboOption {
         return this.encoders;
     }
 
-    private static boolean doesEncoderWork(AVCodec codec) {
-        AVCodecContext codecContext = null;
-        AVDictionary options = new AVDictionary(null);
+    private static boolean codecHasHwConfig(AVCodec codec) {
+       try{
+        AVCodecHWConfig config = avcodec.avcodec_get_hw_config(codec, 0);
+        return config != null;
+            } catch (Throwable t) {
+             return false;
+               }
+}
 
         try {
             if ((codecContext = avcodec.avcodec_alloc_context3(codec)) == null) {
