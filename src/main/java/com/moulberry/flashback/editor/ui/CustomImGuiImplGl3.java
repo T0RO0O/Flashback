@@ -134,6 +134,11 @@ import static org.lwjgl.opengl.GL32.glViewport;
 import static org.lwjgl.opengl.GL33.GL_SAMPLER_BINDING;
 import static org.lwjgl.opengl.GL33.glBindSampler;
 import static org.lwjgl.opengl.GL45.GL_CLIP_ORIGIN;
+if (data.glVersion >= 450) {
+    // Use GL_CLIP_ORIGIN
+} else {
+    // Fallback behavior
+}
 
 /**
  * This class is a straightforward port of the
