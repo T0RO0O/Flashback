@@ -10,8 +10,10 @@ import org.joml.Intersectionf;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
-public abstract sealed class EditorMovementControls permits EditorMovementControls.None, EditorMovementControls.Rotate, EditorMovementControls.Pan, EditorMovementControls.Arcball {
-
+public abstract class EditorMovementControls { private static final class None extends EditorMovementControls { ... }
+    protected static final class Rotate extends EditorMovementControls { ... }
+    protected static final class Pan extends EditorMovementControls { ... }
+    protected static final class Arcball extends EditorMovementControls { ... }
     // Interface
     public abstract boolean allowGameInputWhileCaptureKeyboard();
     public abstract boolean shouldStop(boolean isGrabbed);
