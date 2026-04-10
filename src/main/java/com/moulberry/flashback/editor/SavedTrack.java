@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public record SavedTrack(KeyframeType<?> type, int track, boolean copiedFromDisabled,
+public record SavedTrack(KeyframeType type, int track, boolean copiedFromDisabled,
                          TreeMap<Integer, Keyframe> keyframes) {
     public int applyToScene(EditorScene editorScene, int cursorTicks, int totalTicks, KeyframeRelativeOffsets offsets) {
         if (this.keyframes == null || this.keyframes.isEmpty()) {
