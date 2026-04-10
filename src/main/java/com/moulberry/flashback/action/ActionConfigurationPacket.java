@@ -18,7 +18,7 @@ public class ActionConfigurationPacket implements Action {
     }
 
     @Override
-    public void handle(ReplayServer replayServer, RegistryFriendlyByteBuf friendlyByteBuf) {
+    public void handle(ReplayServer replayServer, FriendlyByteBuf friendlyByteBuf) {
         replayServer.handleConfigurationPacket(friendlyByteBuf);
     }
 
