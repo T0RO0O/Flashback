@@ -36,14 +36,14 @@ public class ImGuiHelper {
     }
 
     private static final int[] enumComboSharedArray = new int[]{0};
-    private static final Map<Class<?>, Object[]> enumComboCachedValues = new HashMap<>();
-    private static final Map<Class<?>, String[]> enumComboCachedText = new HashMap<>();
+    private static final Map enumComboCachedValues = new HashMap();
+    private static final Map enumComboCachedText = new HashMap();
 
     public static void clearEnumComboTextCache() {
         enumComboCachedText.clear();
     }
 
-    public static <T extends Enum<?> & ComboOption> T enumCombo(String label, T c, T[] values) {
+    public static <T extends ComboOption> T enumCombo(String label, T c, T[] values) {
         int currentIndex = -1;
         for (int i = 0; i < values.length; i++) {
             T value = values[i];
