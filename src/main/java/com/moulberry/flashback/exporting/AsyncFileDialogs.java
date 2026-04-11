@@ -22,12 +22,12 @@ public class AsyncFileDialogs {
         return currentSaveOrOpenFileDialog != null;
     }
 
-    public static CompletableFuture<String> saveFileDialog(String defaultPath, String defaultName, String filterDescription, String... filters) {
+      public static CompletableFuture<String> saveFileDialog(String defaultPath, String defaultName, String filterDescription, String... filters) {
         if (hasDialog()) return CompletableFuture.completedFuture(null);
 
-        currentSaveOrOpenFileDialog = new CompletableFuture<>();
-        CompletableFuture<String> future = currentSaveOrOpenFileDialog;
-
+         currentSaveOrOpenFileDialog = new CompletableFuture<>();
+    CompletableFuture<String> future = currentSaveOrOpenFileDialo
+    
         boolean initializedNfd = AsyncFileDialogs.initializedNfd;
         AsyncFileDialogs.initializedNfd = true;
 
