@@ -173,9 +173,8 @@ public class ReplayCombiner {
 
                 Path path = entry.getValue().path();
                 byte[] replayChunk = Files.readAllBytes(path);
-                RegistryFriendlyByteBuf inputBuf = new RegistryFriendlyByteBuf(Unpooled.wrappedBuffer(replayChunk), registryAccess);
+                FriendlyByteBuf inputBuf = new FriendlyByteBuf(Unpooled.wrappedBuffer(replayChunk));
                 FriendlyByteBuf outputBuf = new FriendlyByteBuf(Unpooled.buffer());
-
                 int magic = inputBuf.readInt();
                 if (magic != Flashback.MAGIC) {
                     throw new RuntimeException("Invalid magic");
