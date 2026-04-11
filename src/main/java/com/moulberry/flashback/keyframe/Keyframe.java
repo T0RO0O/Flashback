@@ -29,7 +29,7 @@ public abstract class Keyframe {
     public abstract Keyframe copy();
     public abstract @Nullable KeyframeChange createChange();
     public abstract @Nullable KeyframeChange createSmoothInterpolatedChange(Keyframe p1, Keyframe p2, Keyframe p3, float t0, float t1, float t2, float t3, float amount);
-    public abstract @Nullable KeyframeChange createHermiteInterpolatedChange(Map<Float, Keyframe> keyframes, float tick);
+    public abstract @Nullable KeyframeChange createHermiteInterpolatedChange(Map<Float, ? extends Keyframe> keyframes, float tick);
 
     public float getCustomWidthInTicks() {
         return -1;
