@@ -96,20 +96,16 @@ public abstract class Keyframe {
             } else {
                 throw new RuntimeException("Unable to determine type of keyframe for: " + jsonObject);
             }
-            Keyframe keyframe = switch (type) {
-                case "camera" -> context.deserialize(json, CameraKeyframe.class);
-                case "camera_orbit" -> context.deserialize(json, CameraOrbitKeyframe.class);
-                case "track_entity" -> context.deserialize(json, TrackEntityKeyframe.class);
-                case "fov" -> context.deserialize(json, FOVKeyframe.class);
-                case "tickrate" -> context.deserialize(json, TickrateKeyframe.class);
-                case "freeze" -> context.deserialize(json, FreezeKeyframe.class);
-                case "timelapse" -> context.deserialize(json, TimelapseKeyframe.class);
-                case "time" -> context.deserialize(json, TimeOfDayKeyframe.class);
-                case "camera_shake" -> context.deserialize(json, CameraShakeKeyframe.class);
-                case "block_override" -> context.deserialize(json, BlockOverrideKeyframe.class);
-                case "audio" -> context.deserialize(json, AudioKeyframe.class);
-                default -> throw new IllegalStateException("Unknown keyframe type: " + type);
-            };
+            Keyframe keyframe;
+switch (type) {
+    case "freeze" -> keyframe = context.deserialize(json, FreezeKeyframe.class);
+    case "timelapse" -> keyframe = context.deserialize(json, TimelapseKeyframe.class);
+    case "time" -> keyframe = context.deserialize(json, TimeOfDayKeyframe.class);
+    case "camera_shake" -> keyframe = context.deserialize(json, CameraShakeKeyframe.class);
+    case "block_override" -> keyframe = context.deserialize(json, BlockOverrideKeyframe.class);
+    case "audio" -> keyframe = context.deserialize(json, AudioKeyframe.class);
+    default -> throw new IllegalStateException("Unknown keyframe type: " + type);
+}
             keyframe.interpolationType(context.deserialize(jsonObject.get("interpolation_type"), InterpolationType.class));
             return keyframe;
         }
