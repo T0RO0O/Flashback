@@ -44,8 +44,8 @@ public interface KeyframeType<T extends Keyframe> {
         return false;
     }
     default KeyframeChange customKeyframeChange(TreeMap<Integer, Keyframe> keyframes, float tick) {
-        throw new UnsupportedOperationException();
-    }
+    throw new UnsupportedOperationException();
+}
 
     interface KeyframeCreatePopup<T extends Keyframe> {
         @Nullable T render();
