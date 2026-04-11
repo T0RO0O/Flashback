@@ -22,9 +22,9 @@ import java.util.List;
 public class FlashbackAudioManager {
 
     private static final LoadingCache<Path, FlashbackAudioBuffer> audioBufferCache = CacheBuilder.newBuilder()
-            .weakValues()
-            .build(new CacheLoader<>() {
-                @Override
+        .weakValues()
+        .build(new CacheLoader<Path, FlashbackAudioBuffer>() {
+            @Override
                 public FlashbackAudioBuffer load(@NotNull Path path) {
                     FlashbackAudioBuffer loaded = FlashbackAudioBuffer.load(path);
                     if (loaded != null) {
