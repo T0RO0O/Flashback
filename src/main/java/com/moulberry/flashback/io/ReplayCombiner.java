@@ -305,7 +305,7 @@ public class ReplayCombiner {
                     break;
                 }
 
-                RegistryFriendlyByteBuf registryFriendlyByteBuf = new RegistryFriendlyByteBuf(Unpooled.wrappedBuffer(chunk), registryAccess);
+                FriendlyByteBuf registryFriendlyByteBuf = new FriendlyByteBuf(Unpooled.wrappedBuffer(chunk));
 
                 try {
                     Packet<?> packet = gamePacketCodec.decode(registryFriendlyByteBuf);
