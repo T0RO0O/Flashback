@@ -103,9 +103,9 @@ public class AsyncReplaySaver {
 
     public void writeGamePackets(StreamCodec<ByteBuf, Packet<? super ClientGamePacketListener>> gamePacketCodec,
                                  List<Packet<? super ClientGamePacketListener>> packets) {
-        List<Packet<? super ClientGamePacketListener>> packetCopy = new ArrayList<>(packets);
-        this.submit(writer -> {
-            RegistryFriendlyByteBuf chunkCacheOutput = null;
+    List<Packet<? super ClientGamePacketListener>> packetCopy = new ArrayList<>(packets);
+    this.submit(writer -> {
+        FriendlyByteBuf chunkCacheOutput = null;
             int lastChunkCacheIndex = -1;
 
             FriendlyByteBuf customPayloadTempBuffer = null;
@@ -140,7 +140,7 @@ public class AsyncReplaySaver {
 
                         // Create new chunk cache output buffer if necessary
                         if (chunkCacheOutput == null) {
-                            chunkCacheOutput = new RegistryFriendlyByteBuf(Unpooled.buffer(), writer.registryAccess());
+                            chunkCacheOutput = new FriendlyByteBuf(Unpooled.buffer());
                         }
 
                         // Write placeholder value for size
@@ -173,10 +173,9 @@ public class AsyncReplaySaver {
                     // Some mods might throw errors when encoding packets, so this
                     // attempts to encode the packet before starting the action
                     try {
-                        if (customPayloadTempBuffer == null) {
-                            customPayloadTempBuffer = new RegistryFriendlyByteBuf(Unpooled.buffer(), writer.registryAccess());
+                       if (customPayloadTempBuffer == null) {
+                            customPayloadTempBuffer = new FriendlyByteBuf(Unpooled.buffer());
                         }
-
                         customPayloadTempBuffer.clear();
                         gamePacketCodec.encode(customPayloadTempBuffer, packet);
 
@@ -197,7 +196,7 @@ public class AsyncReplaySaver {
         });
     }
 
-    private void writeChunkCacheFile(RegistryFriendlyByteBuf chunkCacheOutput, int index) {
+    private void writeChunkCacheFile(FriendlyByteBuf chunkCacheOutput, int index) {
         if (chunkCacheOutput == null || chunkCacheOutput.writerIndex() == 0) {
             return;
         }
@@ -214,9 +213,8 @@ public class AsyncReplaySaver {
         }
     }
 
-    public void writeConfigurationPackets(StreamCodec<ByteBuf, Packet<? super ClientConfigurationPacketListener>> configurationPacketCodec,
-                                 List<Packet<? super ClientConfigurationPacketListener>> packets) {
-        List<Packet<? super ClientConfigurationPacketListener>> packetCopy = new ArrayList<>(packets);
+         public void writeConfigurationPackets(StreamCodec<ByteBuf, Packet<? super ClientConfigurationPacketListener>> configurationPacketCodec,
+        List<Packet<? super ClientConfigurationPacketListener>> packets) {
         this.submit(writer -> {
             for (Packet<? super ClientConfigurationPacketListener> packet : packetCopy) {
                 writer.startAction(ActionConfigurationPacket.INSTANCE);
