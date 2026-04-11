@@ -115,7 +115,7 @@ public class ReplayCombiner {
 
             // Write chunked level chunk caches
             int lastCacheIndex = -1;
-            RegistryFriendlyByteBuf chunkCacheOutput = null;
+            FriendlyByteBuf chunkCacheOutput = null;
             for (int i = 0; i < levelChunkPackets.size(); i++) {
                 int cacheIndex = i / ReplayChunkCache.CHUNK_CACHE_SIZE;
 
