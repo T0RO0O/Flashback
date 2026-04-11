@@ -121,7 +121,7 @@ public class ReplayCombiner {
 
                 if (chunkCacheOutput == null) {
                     lastCacheIndex = cacheIndex;
-                    chunkCacheOutput = new RegistryFriendlyByteBuf(Unpooled.buffer(), registryAccess);
+                    chunkCacheOutput = new FriendlyByteBuf(Unpooled.buffer());
                 } else if (cacheIndex != lastCacheIndex) {
                     byte[] bytes = new byte[chunkCacheOutput.writerIndex()];
                     chunkCacheOutput.getBytes(0, bytes);
@@ -132,7 +132,7 @@ public class ReplayCombiner {
                     zipOut.closeEntry();
 
                     lastCacheIndex = cacheIndex;
-                    chunkCacheOutput = new RegistryFriendlyByteBuf(Unpooled.buffer(), registryAccess);
+                    chunkCacheOutput = new FriendlyByteBuf(Unpooled.buffer());
                 }
 
                 // Write placeholder value for size
