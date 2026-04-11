@@ -34,7 +34,7 @@ public class PNGSequenceVideoWriter implements VideoWriter {
 
     public PNGSequenceVideoWriter(ExportSettings settings) {
         this.settings = settings;
-        this.encodeQueue = new ArrayBlockingQueue<>(32);
+       this.encodeQueue = new ArrayBlockingQueue<NativeImage>(32);
 
         createEncodeThread().start();
     }
