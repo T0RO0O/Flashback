@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ServerGamePacketListenerImplExt {
 
-    void flashback$switchToConfigWithTasks(List<Packet<? super ClientConfigurationPacketListener>> initialPackets, List<ConfigurationTask> tasks);
+    void flashback$startConfiguration(List<Packet<? super ClientConfigurationPacketListener>> initialPackets, List<ConfigurationTask> tasks);
 
 }
